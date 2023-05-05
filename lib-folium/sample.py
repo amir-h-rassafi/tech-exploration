@@ -5,9 +5,9 @@ from cluster_drawer import GeoPoint, Cluster, drawClusters
 # Define the bounding box for Tehran (min_lat, max_lat, min_lng, max_lng)
 tehran_bbox = (35.65, 35.75, 51.24, 51.55)
 
-point_count = 20
+point_count = 80
 
-dc_count = 2
+dc_count = 5
 
 def generate_random_coordinate(bbox):
     lat = random.uniform(bbox[0], bbox[1])
