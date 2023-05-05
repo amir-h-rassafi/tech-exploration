@@ -22,6 +22,13 @@ class GeoPoint:
     def toTuple(self) -> tuple:
         return (self.lat, self.lng)
 
+    def getDistance(self, point) -> float:
+        return ((self.getLat() - point.getLat())**2 + (self.getLng() - point.getLng())**2)**0.5
+    
+    def getCenter(self, point):
+        return GeoPoint((self.getLat() + point.getLat())/2, (self.getLng() + point.getLng())/2)
+
+
 class Cluster:
     def __init__(self, name: str):
         self.name = name
@@ -39,19 +46,19 @@ class Cluster:
 
     def getPoints(self) -> list:
         return self.points
-
-
-def drawCluster(cluster: Cluster, map_obj: folium.Map, name = None):
-
-    for point in cluster.getPoints():
-        folium.Marker(location=point.toTuple()).add_to(map_obj)
     
-    polyLine = []
-    for point in cluster.getPoints():
-        polyLine.append(point.toTuple())
-        polyLine.append(cluster.getCenter().toTuple())
 
-    folium.PolyLine(locations=polyLine, color="blue", weight=2.5, opacity=1).add_to(map_obj)
+def drawClusters(clusters: List[Cluster], map_obj: folium.Map, name = None):
+    for cluster in clusters:
+        for point in cluster.getPoints():
+            folium.Marker(location=point.toTuple()).add_to(map_obj)
+        
+        polyLine = []
+        for point in cluster.getPoints():
+            polyLine.append(point.toTuple())
+            polyLine.append(cluster.getCenter().toTuple())
+
+        folium.PolyLine(locations=polyLine, color="blue", weight=2.5, opacity=1).add_to(map_obj)
 
     if name is None:
         name = "map"
