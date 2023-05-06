@@ -8,6 +8,8 @@ import pandas as pd
 dimensions = pd.read_csv("dimension-data.csv")
 
 X = dimensions.iloc[:, 0:4].values
+for row in X:
+    row[0:3] = sorted(row[0:3])
 Y = dimensions.iloc[:, 4].values
 
 Y = np.where(Y == 'mid', 0, 1)
@@ -18,12 +20,14 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.6, random_
 model = LinearRegression()
 model.fit(X_train, Y_train)
 Y_pred = model.predict(X_test)
+print("Coefficients:", model.coef_)
+print("Intercept:", model.intercept_)
+
 
 Y_pred_round = [0 if i < 0.5 else 1 for i in Y_pred]
-
 mse = mean_squared_error(Y_test, Y_pred)
-
 accuracy = accuracy_score(Y_test, Y_pred_round)
+print('Accuracy', accuracy)
 
 cm = confusion_matrix(Y_test, Y_pred_round)
 
