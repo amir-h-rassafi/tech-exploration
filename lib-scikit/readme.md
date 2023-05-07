@@ -4,4 +4,5 @@ make
 python linear-regression.py
 python logistic-regression.py
 python svm.py
+python tree.py
 ```
