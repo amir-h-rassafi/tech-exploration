@@ -42,3 +42,23 @@ plt.xlabel('Predicted label')
 plt.show()
 
 print(classification_report(Y_test, Y_pred_round))
+
+def logistic_regression_formula(x):
+    coef = [0.03007622, 0.01718539, 0.11734226, 0.26092057]
+    intercept = -20.12362769
+    linear_sum = sum(w * feature for w, feature in zip(coef, x)) + intercept
+    probability = 1 / (1 + np.exp(-linear_sum))
+    return probability
+
+i = 0   
+for x, y in zip(X_test, Y_test):
+    prob =  logistic_regression_formula(x)
+    if prob > 0.5 :
+        r = 1
+    else:
+        r = 0
+    if r != y :
+        print(y,x, prob) 
+        i += 1
+print(1 - i/len(X_test))
+print('end', len(X_test))
