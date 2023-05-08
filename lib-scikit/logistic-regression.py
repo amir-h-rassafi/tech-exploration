@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-dimensions = pd.read_csv("dimension-data.csv")
+dimensions = pd.read_csv("dimension-data2.csv")
 
 X = dimensions.iloc[:, 0:4].values
 for row in X:
@@ -14,7 +14,7 @@ Y = dimensions.iloc[:, 4].values
 
 Y = np.where(Y == 'mid', 0, 1)
 
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5, random_state=15, shuffle=True)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=15, shuffle=True)
 
 
 
@@ -39,26 +39,40 @@ plt.title('Confusion Matrix')
 plt.colorbar()
 plt.ylabel('True label')
 plt.xlabel('Predicted label')
-plt.show()
+# plt.show()
 
 print(classification_report(Y_test, Y_pred_round))
 
-def logistic_regression_formula(x):
-    coef = [0.03007622, 0.01718539, 0.11734226, 0.26092057]
-    intercept = -20.12362769
+def logistic_regression_formula(x, coef = None, intercept = None):
+    if coef is None:
+        coef = [0.02932585, 0.01655529, 0.11812993, 0.27142221]
+    if intercept is None:
+        intercept = -20.26230048
     linear_sum = sum(w * feature for w, feature in zip(coef, x)) + intercept
     probability = 1 / (1 + np.exp(-linear_sum))
     return probability
 
 i = 0   
 for x, y in zip(X_test, Y_test):
-    prob =  logistic_regression_formula(x)
+    prob =  logistic_regression_formula(x, coef[0], intercept)
     if prob > 0.5 :
         r = 1
     else:
         r = 0
     if r != y :
-        print(y,x, prob) 
+        # print(y,x, prob) 
         i += 1
-print(1 - i/len(X_test))
-print('end', len(X_test))
+print(1 - i/len(X_test), len(X_test))
+
+dimensions2 = pd.read_csv("dimension-data.csv")
+X = dimensions2.iloc[:, 0:4].values
+for row in X:
+    row[0:3] = sorted(row[0:3])
+Y = dimensions2.iloc[:, 4].values
+
+Y = np.where(Y == 'mid', 0, 1)
+
+Y_pred = model.predict(X)
+
+accuracy = accuracy_score(Y, Y_pred)
+print(accuracy)
