@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: team
+  namespace: fulfillment-team
+subjects:
+- kind: ServiceAccount
+  name: fc-team
+  namespace: fulfillment-team
+roleRef:
+  kind: Role
+  name: team
+  apiGroup: rbac.authorization.k8s.io
