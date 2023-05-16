@@ -6,6 +6,13 @@ class GeoPoint:
         self.lat = lat
         self.lng = lng
         self.name = None
+        self.color = 'blue'
+
+    def setColor(self, color: str):
+        self.color = color
+
+    def getColor(self):
+        return self.color
 
     def setName(self, name: str):
         self.name = name
@@ -51,7 +58,7 @@ class Cluster:
 def drawClusters(clusters: List[Cluster], map_obj: folium.Map, name = None):
     for cluster in clusters:
         for point in cluster.getPoints():
-            folium.Marker(location=point.toTuple()).add_to(map_obj)
+            folium.Marker(location=point.toTuple() , icon=folium.Icon(color=point.getColor())).add_to(map_obj)
         
         polyLine = []
         for point in cluster.getPoints():
