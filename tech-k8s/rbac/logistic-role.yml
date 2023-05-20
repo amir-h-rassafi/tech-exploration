@@ -4,7 +4,8 @@ metadata:
   namespace: logistics-team
   name: lg-team
 rules:
-  - apiGroups: ["", "networking.k8s.io", "extensions", "apps"]
+  - apiGroups:
+      ["", "networking.k8s.io", "events.k8s.io", "extensions", "apps", "batch"]
     resources:
       [
         "pods",
