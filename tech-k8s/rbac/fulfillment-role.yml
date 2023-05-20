@@ -4,6 +4,22 @@ metadata:
   namespace: fulfillment-team
   name: team
 rules:
-- apiGroups: ["", "extensions", "apps"]
-  resources: ["pods", "services", "deployments", "endpoints", "replicasets", "configmaps", "statefulsets", "daemonsets", "jobs", "cronjobs", "configmaps", "ingresses", "persistentvolumes", "persistentvolumeclaims"]
-  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["", "networking.k8s.io", "extensions", "apps"]
+    resources:
+      [
+        "pods",
+        "services",
+        "deployments",
+        "endpoints",
+        "replicasets",
+        "configmaps",
+        "statefulsets",
+        "daemonsets",
+        "jobs",
+        "cronjobs",
+        "configmaps",
+        "ingresses",
+        "persistentvolumes",
+        "persistentvolumeclaims",
+      ]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
