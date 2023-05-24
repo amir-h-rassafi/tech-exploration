@@ -11,7 +11,7 @@ rules:
         "pods",
         "pods/log",
         "pods/exec",
-        "pods/portforwad",
+        "pods/portforward",
         "services",
         "deployments",
         "endpoints",
