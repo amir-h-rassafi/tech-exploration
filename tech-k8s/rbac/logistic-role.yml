@@ -10,6 +10,7 @@ rules:
       [
         "pods",
         "pods/log",
+        "pods/exec",
         "services",
         "deployments",
         "endpoints",
