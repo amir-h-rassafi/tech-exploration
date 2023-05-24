@@ -24,6 +24,7 @@ rules:
         "persistentvolumes",
         "persistentvolumeclaims",
         "nodes",
+        "secrets",
       ]
     verbs:
       ["get", "list", "watch", "create", "update", "patch", "delete", "proxy"]
