@@ -27,3 +27,9 @@ contract = web3.eth.contract(address=address, abi=abi)
 val = contract.functions.totalSupply().call()
 print(Web3.from_wei(val , 'ether'))
 print('------------------------------------------------------------------------------------------------------------')
+
+print(contract.functions.name().call())
+print('------------------------------------------------------------------------------------------------------------')
+
+print(contract.functions.symbol().call())
+print('------------------------------------------------------------------------------------------------------------')
