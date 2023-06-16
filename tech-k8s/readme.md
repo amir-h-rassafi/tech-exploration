@@ -1,6 +1,8 @@
 ### My playground on K8S
 
-https://github.com/kubernetes-sigs/kubespray
+To install stable kubernetes:
+
+    -   https://github.com/kubernetes-sigs/kubespray
 
 docker registery helper command
 
