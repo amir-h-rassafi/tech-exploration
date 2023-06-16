@@ -2,7 +2,9 @@
 
 To install stable kubernetes:
 
-    -   https://github.com/kubernetes-sigs/kubespray
+```
+https://github.com/kubernetes-sigs/kubespray
+```
 
 docker registery helper command
 
