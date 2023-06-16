@@ -1,0 +1,11 @@
+```
+apiVersion: v1
+kind: Secret
+metadata:
+    name: myapp-secret-tls
+    namespace: default
+data:
+    tls.crt: base64 encoded cert
+    tls.key: base64 encoded key
+type: kuberenetes.io/tls
+```
